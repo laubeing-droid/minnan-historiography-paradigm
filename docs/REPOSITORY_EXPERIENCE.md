@@ -14,11 +14,33 @@
 
 ## 闽南—西班牙文献项目
 
-详见[RSI 实现证据](RSI_EVIDENCE.md)。它留下的关键教训包括：字段计数通过仍可能存在空壳；门禁PASS仍有内容缺陷；Git换行转换可能改变需要逐字节保全的成果；针对旧错误的检查也可能留下新的漏口。
+这个项目已经留下真实交付、改进复用和多任 Agent 接班的记录。这里把三条线接起来，不另造一个演示项目，也不把已有施工降格成“还缺一个实例”。
 
-可迁移的是来源定位、版本与派生关系，内容核读与结构检测分开，以及“问题→候选修复→正反例→有权启用→后批检查”。声调码、M1/M2结构、特定页数和自动修复阈值不应成为所有研究的共同格式。
+### 1. 从盲读到校对交付
 
-验收规则应能纠正自身错误，不能永远只加严，也不能要求所有历史缺陷先消失才启用合理的新标准。独立审查、版本范围、旧成果处置和新产出检查要一起说明。
+[一份实际盲读批次](https://github.com/laubeing-droid/minnan-spanish-corpus/blob/5956415589703934a5707ec8cdcc1e1e5a9f07a6/literature/workspace_m2_dhs834/raw_blind/raw_blind_0845-0859.json) → [逐页封存清单](https://github.com/laubeing-droid/minnan-spanish-corpus/blob/5956415589703934a5707ec8cdcc1e1e5a9f07a6/literature/workspace_m2_dhs834/BLIND_READ_MANIFEST.json) → [校对问题队列](https://github.com/laubeing-droid/minnan-spanish-corpus/blob/5956415589703934a5707ec8cdcc1e1e5a9f07a6/literature/workspace_m2_dhs834/COLLATION_QUEUE.json) → [校对工作包](https://github.com/laubeing-droid/minnan-spanish-corpus/blob/c14d3968b59bf5045bc60bb6def5ee009606829c/collation_workbench/INDEX.md) → [D1 原稿转写本](https://github.com/laubeing-droid/minnan-spanish-corpus/blob/5956415589703934a5707ec8cdcc1e1e5a9f07a6/literature/deliverables/book1/01_原稿转写本.md)，构成可以逐步回查的交付链。
+
+工作包组织了1,103页：884页带校对问题、53页无该类标记、166页只有M1成果。D1汇集937页封存转写和166页暂列内容，是**校对前快照**。这是真实交付，不是全量学术验收；无问题标记、哈希匹配、文件齐备，都不能证明每个字读对，更不能代表22个来源全部校完。接手者应从具体问题和保留的原稿继续，而不是从一份“全部完成”声明重新开始。
+
+可迁移的是这条关系：每份交付能找到输入、处理结果、未决问题和下一位接手者的任务。不要把本项目页数、字段和声调码变成所有研究的格式。
+
+### 2. 一次确实用于后续批次的改进
+
+[LESSONS 的 L4](https://github.com/laubeing-droid/minnan-spanish-corpus/blob/5956415589703934a5707ec8cdcc1e1e5a9f07a6/docs/LESSONS.md)和[项目史第三节](https://github.com/laubeing-droid/minnan-spanish-corpus/blob/5956415589703934a5707ec8cdcc1e1e5a9f07a6/docs/PROJECT_HISTORY.md)记录了同一条改进：PART 2 的396–399页是现代分册页，却因零词条触发“每页至少3条”的检查。问题不在于漏读，而在于检查把所有物理页都当作辞典页。
+
+处理方法是辨认页面类别，登记 MODERN_FRONT_MATTER / BLANK，在合并和统计时分别处理，并保留[非辞典页记录](https://github.com/laubeing-droid/minnan-spanish-corpus/blob/5956415589703934a5707ec8cdcc1e1e5a9f07a6/literature/workspace_m2_dhs834/non_lexicographic_pages.json)。项目史随后记录，PART 3 的769–772页复用了这套分类处理。这就是“本批发现错误 → 改工艺与适用条件 → 留下记录 → 后批复用”的真实实例，不必另造一段RSI演示。
+
+这里依据的是公开项目史、教训和保存的分类记录，本仓没有重跑历史批次。它支持一次具体改进得到后续使用，不证明整个自改进系统已经全自动闭合。声调检查虽另有代码及测试，但本次没有核到其修订后足够的盲读批次证据，不能拿它代替这条已记录的后批复用链。相关实现和反例另见[RSI实现证据](RSI_EVIDENCE.md)。
+
+验收规则也可能有错，但不能由施工者为了通过而悄悄放宽。工艺修改与标准变更应分开，涉及标准时须说明审查、批准、适用版本和旧成果处置。
+
+### 3. 多任 Agent 已经接班，不再重复安排演示
+
+[项目史](https://github.com/laubeing-droid/minnan-spanish-corpus/blob/5956415589703934a5707ec8cdcc1e1e5a9f07a6/docs/PROJECT_HISTORY.md)记载了 Codex、Gemini 与后续施工方的工作；[接班施工指令](https://github.com/laubeing-droid/minnan-spanish-corpus/blob/5956415589703934a5707ec8cdcc1e1e5a9f07a6/ZCODE_GLM_全自动执行指令.md)、上述批次与交付件，以及[Agent使用说明](https://github.com/laubeing-droid/minnan-spanish-corpus/blob/5956415589703934a5707ec8cdcc1e1e5a9f07a6/docs/AGENT_GUIDE.md)，提供了角色更替、工序说明和接续产物的具体入口。
+
+可提炼的交接要求是：先看当前范围和保护区，再核版本、来源、已做与未做，最后接手明确的工作包。历史指令中的完成宣称要与后来发现的缺陷对读，不能因为文件名写着“全自动”就把它当作现行验收结论。
+
+这些材料支持“已有多任 Agent 接班施工”。它们不能证明接手者从未接触先前对话、没有本地资料，或仅凭公开仓完成受控盲试；原扫描材料也不都公开。因此不把它叫作“零上下文测试”。没有这种严格测试的证据，不等于没有实际接班经验。
 
 ## 半成品研究控制器的设计经验
 
